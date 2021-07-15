@@ -31,7 +31,7 @@ public class PropertyFormDTO {
     public PropertyFormDTO() {
     }
 
-    public PropertyFormDTO(String prop_name, String prop_district, BigDecimal value_district_m2, List<RoomFormDTO> rooms) {
+    public PropertyFormDTO(String prop_name, String prop_district, List<RoomFormDTO> rooms) {
         this.prop_name = prop_name;
         this.prop_district = prop_district;
 //        this.value_district_m2 = value_district_m2;
