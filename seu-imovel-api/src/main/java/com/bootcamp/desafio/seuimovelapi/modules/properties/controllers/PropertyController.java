@@ -51,4 +51,11 @@ public class PropertyController {
 
         return ResponseEntity.ok(roomSquareMetersDTO);
     }
+
+    @GetMapping("/{id}/rooms")
+    public ResponseEntity<List<RoomSquareMetersDTO>> getRoomsSquareMeters(@PathVariable Long id) {
+        List<RoomSquareMetersDTO> roomSquareMetersDTOS = this.propertyService.getRoomsSquareMeters(id);
+
+        return ResponseEntity.ok(roomSquareMetersDTOS);
+    }
 }

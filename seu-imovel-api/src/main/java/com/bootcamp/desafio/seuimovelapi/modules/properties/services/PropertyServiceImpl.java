@@ -80,4 +80,11 @@ public class PropertyServiceImpl implements PropertyService {
 
         return RoomSquareMetersDTO.convert(biggestRoom);
     }
+
+    @Override
+    public List<RoomSquareMetersDTO> getRoomsSquareMeters(Long id) {
+        Property property = this.findById(id);
+
+        return RoomSquareMetersDTO.convert(property.getRooms());
+    }
 }
