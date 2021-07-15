@@ -5,7 +5,7 @@ import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.PropertyFormDTO
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalSquareMetersDTO;
 
 public interface PropertyService {
-    void createProperty(PropertyFormDTO formDTO);
+    boolean createProperty(PropertyFormDTO formDTO);
     Property findById(Long id);
     TotalSquareMetersDTO getTotalSquareMeters(Long id);
 }

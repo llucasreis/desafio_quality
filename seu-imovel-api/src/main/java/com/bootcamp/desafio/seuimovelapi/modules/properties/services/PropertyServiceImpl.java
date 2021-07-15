@@ -24,12 +24,12 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public void createProperty(PropertyFormDTO formDTO) {
+    public boolean createProperty(PropertyFormDTO formDTO) {
         District district = this.districtRepository.findByName(formDTO.getProp_district());
 
         if (district == null) throw new NotFoundException("Bairro não encontrado");
 
-        boolean success = this.propertyRepository.createProperty(formDTO.convert(district));
+        return this.propertyRepository.createProperty(formDTO.convert(district));
     }
 
     @Override
