@@ -5,11 +5,15 @@ import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Property;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Room;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.PropertyFormDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalSquareMetersDTO;
+import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalValueDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.DistrictRepository;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.PropertyRepository;
 import com.bootcamp.desafio.seuimovelapi.shared.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class PropertyServiceImpl implements PropertyService {
@@ -41,12 +45,28 @@ public class PropertyServiceImpl implements PropertyService {
         return property;
     }
 
+    private double calculateTotalSquareMeters(List<Room> rooms) {
+        return rooms.stream().mapToDouble(Room::squareMeters).sum();
+    }
+
     @Override
     public TotalSquareMetersDTO getTotalSquareMeters(Long id) {
         Property property = this.findById(id);
 
-        double totalSquareMeters = property.getRooms().stream().mapToDouble(Room::squareMeters).sum();
+        double totalSquareMeters = this.calculateTotalSquareMeters(property.getRooms());
 
         return new TotalSquareMetersDTO(property.getId(), property.getProp_name(), totalSquareMeters);
+    }
+
+    @Override
+    public TotalValueDTO getTotalValue(Long id) {
+        Property property = this.findById(id);
+
+        double totalSquareMeters = this.calculateTotalSquareMeters(property.getRooms());
+        BigDecimal districtValue = property.getDistrict().getValue_district_m2();
+
+        BigDecimal totalValue = districtValue.multiply(BigDecimal.valueOf(totalSquareMeters));
+
+        return new TotalValueDTO(property.getId(), property.getProp_name(), totalValue);
     }
 }
