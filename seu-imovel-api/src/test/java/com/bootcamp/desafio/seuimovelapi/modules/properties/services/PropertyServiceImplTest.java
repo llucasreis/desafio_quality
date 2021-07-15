@@ -122,4 +122,21 @@ public class PropertyServiceImplTest {
 
         Assertions.assertThat(response.getTotalValue()).isEqualTo(expected);
     }
+
+    @Test
+    public void shouldBeAbleToGetBiggestRoom() {
+        Property mockProperty = new Property(
+                1L, "Casa1",
+                new District(1L,"Japiim 2", BigDecimal.valueOf(1200.2)),
+                List.of(
+                        new Room("Quarto", 25.0, 25.0),
+                        new Room("Banheiro", 15.0, 15.0)));
+
+        Mockito.when(propertyRepository.findById(ArgumentMatchers.any(Long.class))).thenReturn(mockProperty);
+
+        Room response = this.propertyService.getBiggestRoom(1L);
+
+        Assertions.assertThat(response.getRoom_name()).isEqualTo("Quarto");
+        Assertions.assertThat(response.squareMeters()).isEqualTo(625.0);
+    }
 }
