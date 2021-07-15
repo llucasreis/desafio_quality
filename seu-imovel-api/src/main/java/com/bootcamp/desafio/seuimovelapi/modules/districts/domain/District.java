@@ -1,4 +1,4 @@
-package com.bootcamp.desafio.seuimovelapi.modules.properties.domain;
+package com.bootcamp.desafio.seuimovelapi.modules.districts.domain;
 
 import java.math.BigDecimal;
 
