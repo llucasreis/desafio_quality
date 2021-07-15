@@ -4,7 +4,7 @@ import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.District;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Property;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Room;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.PropertyFormDTO;
-import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.RoomSquareMeterDTO;
+import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.RoomSquareMetersDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalSquareMetersDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalValueDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.DistrictRepository;
@@ -73,11 +73,11 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public RoomSquareMeterDTO getBiggestRoom(Long id) {
+    public RoomSquareMetersDTO getBiggestRoom(Long id) {
         Property property = this.findById(id);
 
         Room biggestRoom = property.getRooms().stream().max(Comparator.comparingDouble(Room::squareMeters)).get();
 
-        return RoomSquareMeterDTO.convert(biggestRoom);
+        return RoomSquareMetersDTO.convert(biggestRoom);
     }
 }

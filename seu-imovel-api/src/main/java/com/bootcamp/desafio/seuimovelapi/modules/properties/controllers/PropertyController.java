@@ -1,7 +1,6 @@
 package com.bootcamp.desafio.seuimovelapi.modules.properties.controllers;
 
-import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Room;
-import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.RoomSquareMeterDTO;
+import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.RoomSquareMetersDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.PropertyFormDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalSquareMetersDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalValueDTO;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/property")
@@ -46,9 +46,9 @@ public class PropertyController {
     }
 
     @GetMapping("/{id}/biggestRoom")
-    public ResponseEntity<RoomSquareMeterDTO> getBiggestRoom(@PathVariable Long id) {
-        RoomSquareMeterDTO roomSquareMeterDTO = this.propertyService.getBiggestRoom(id);
+    public ResponseEntity<RoomSquareMetersDTO> getBiggestRoom(@PathVariable Long id) {
+        RoomSquareMetersDTO roomSquareMetersDTO = this.propertyService.getBiggestRoom(id);
 
-        return ResponseEntity.ok(roomSquareMeterDTO);
+        return ResponseEntity.ok(roomSquareMetersDTO);
     }
 }

@@ -10,17 +10,12 @@ import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.*;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.DistrictRepository;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.PropertyRepository;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.PropertyRepositoryImpl;
-import com.bootcamp.desafio.seuimovelapi.modules.properties.services.PropertyService;
-import com.bootcamp.desafio.seuimovelapi.modules.properties.services.PropertyServiceImpl;
 import com.bootcamp.desafio.seuimovelapi.shared.exceptions.NotFoundException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
-import org.mockito.InjectMocks;
 import org.mockito.Mockito;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -131,7 +126,7 @@ public class PropertyServiceImplTest {
 
         Mockito.when(propertyRepository.findById(ArgumentMatchers.any(Long.class))).thenReturn(mockProperty);
 
-        RoomSquareMeterDTO response = this.propertyService.getBiggestRoom(1L);
+        RoomSquareMetersDTO response = this.propertyService.getBiggestRoom(1L);
 
         Assertions.assertThat(response.getRoom_name()).isEqualTo("Quarto");
         Assertions.assertThat(response.getSquare_meters()).isEqualTo(625.0);
