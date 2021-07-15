@@ -15,16 +15,15 @@ public class DistrictRepository {
 
     public DistrictRepository() {
         this.districtList = new ArrayList<>(Arrays.asList(
-                new District("Japiim 2"),
-                new District("Vieralves"),
-                new District("Ponta Negra"),
-                new District("Cachoeirinha")
+                new District(1L, "Japiim 2", BigDecimal.valueOf(2933.5)),
+                new District(2L, "Vieralves", BigDecimal.valueOf(5432.7)),
+                new District(3L, "Ponta Negra", BigDecimal.valueOf(7931.3)),
+                new District(4L, "Cachoeirinha", BigDecimal.valueOf(1730.9))
         ));
     }
 
     public District findByName(String prop_district) {
         return this.districtList.stream().filter(d -> d.getProp_district().equals(prop_district)).findFirst().orElse(null);
     }
-
 
 }
