@@ -29,4 +29,9 @@ public class PropertyRepositoryImpl implements PropertyRepository {
 
         return this.propertyList.add(property);
     }
+
+    @Override
+    public Property findById(Long id) {
+        return this.propertyList.stream().filter(p -> p.getId().equals(id)).findFirst().orElse(null);
+    }
 }
