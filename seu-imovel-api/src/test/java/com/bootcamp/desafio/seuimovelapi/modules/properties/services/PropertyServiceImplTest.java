@@ -9,6 +9,7 @@ import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Room;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.PropertyFormDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.RoomFormDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalSquareMetersDTO;
+import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalValueDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.DistrictRepository;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.PropertyRepository;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.PropertyRepositoryImpl;
@@ -104,5 +105,21 @@ public class PropertyServiceImplTest {
         TotalSquareMetersDTO response = this.propertyService.getTotalSquareMeters(1L);
 
         Assertions.assertThat(response.getTotalSquareMeters()).isEqualTo(expected);
+    }
+
+    @Test
+    public void shouldBeAbleToCalculateTotalValue() {
+        BigDecimal expected = BigDecimal.valueOf(1200.2).multiply(BigDecimal.valueOf(625.0));
+
+        Property mockProperty = new Property(
+                1L, "Casa1",
+                new District(1L,"Japiim 2", BigDecimal.valueOf(1200.2)),
+                List.of(new Room("Quarto", 25.0, 25.0)));
+
+        Mockito.when(propertyRepository.findById(ArgumentMatchers.any(Long.class))).thenReturn(mockProperty);
+
+        TotalValueDTO response = this.propertyService.getTotalValue(1L);
+
+        Assertions.assertThat(response.getTotalValue()).isEqualTo(expected);
     }
 }
