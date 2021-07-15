@@ -1,5 +1,7 @@
 package com.bootcamp.desafio.seuimovelapi.modules.properties.controllers;
 
+import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Room;
+import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.BiggestRoomDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.PropertyFormDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalSquareMetersDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalValueDTO;
@@ -41,5 +43,12 @@ public class PropertyController {
         TotalValueDTO totalValueDTO = this.propertyService.getTotalValue(id);
 
         return ResponseEntity.ok(totalValueDTO);
+    }
+
+    @GetMapping("/{id}/biggestRoom")
+    public ResponseEntity<BiggestRoomDTO> getBiggestRoom(@PathVariable Long id) {
+        Room biggestRoom = this.propertyService.getBiggestRoom(id);
+
+        return ResponseEntity.ok(BiggestRoomDTO.convert(biggestRoom));
     }
 }

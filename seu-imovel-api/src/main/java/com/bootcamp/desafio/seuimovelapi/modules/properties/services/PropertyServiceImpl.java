@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -68,5 +69,12 @@ public class PropertyServiceImpl implements PropertyService {
         BigDecimal totalValue = districtValue.multiply(BigDecimal.valueOf(totalSquareMeters));
 
         return new TotalValueDTO(property.getId(), property.getProp_name(), totalValue);
+    }
+
+    @Override
+    public Room getBiggestRoom(Long id) {
+        Property property = this.findById(id);
+
+        return property.getRooms().stream().max(Comparator.comparingDouble(Room::squareMeters)).get();
     }
 }
