@@ -1,13 +1,13 @@
 package com.bootcamp.desafio.seuimovelapi.modules.properties.services;
 
-import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.District;
+import com.bootcamp.desafio.seuimovelapi.modules.districts.domain.District;
+import com.bootcamp.desafio.seuimovelapi.modules.districts.services.DistrictService;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Property;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Room;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.PropertyFormDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.RoomSquareMetersDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalSquareMetersDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalValueDTO;
-import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.DistrictRepository;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.PropertyRepository;
 import com.bootcamp.desafio.seuimovelapi.shared.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,19 +21,17 @@ import java.util.List;
 public class PropertyServiceImpl implements PropertyService {
 
     private final PropertyRepository propertyRepository;
-    private final DistrictRepository districtRepository;
+    private final DistrictService districtService;
 
     @Autowired
-    public PropertyServiceImpl(PropertyRepository propertyRepository, DistrictRepository districtRepository) {
+    public PropertyServiceImpl(PropertyRepository propertyRepository, DistrictService districtService) {
         this.propertyRepository = propertyRepository;
-        this.districtRepository = districtRepository;
+        this.districtService = districtService;
     }
 
     @Override
     public boolean createProperty(PropertyFormDTO formDTO) {
-        District district = this.districtRepository.findByName(formDTO.getProp_district());
-
-        if (district == null) throw new NotFoundException("Bairro não encontrado");
+        District district = this.districtService.findById(formDTO.getProp_district_id());
 
         return this.propertyRepository.createProperty(formDTO.convert(district));
     }
