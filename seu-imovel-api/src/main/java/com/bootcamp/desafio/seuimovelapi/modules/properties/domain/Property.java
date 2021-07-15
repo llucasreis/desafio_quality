@@ -1,5 +1,7 @@
 package com.bootcamp.desafio.seuimovelapi.modules.properties.domain;
 
+import com.bootcamp.desafio.seuimovelapi.modules.districts.domain.District;
+
 import java.util.List;
 
 public class Property {
