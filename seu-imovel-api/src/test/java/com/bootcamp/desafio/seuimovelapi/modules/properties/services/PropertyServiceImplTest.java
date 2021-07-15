@@ -131,4 +131,24 @@ public class PropertyServiceImplTest {
         Assertions.assertThat(response.getRoom_name()).isEqualTo("Quarto");
         Assertions.assertThat(response.getSquare_meters()).isEqualTo(625.0);
     }
+
+    @Test
+    public void shouldBeAbleToGetRoomsSquareMeters() {
+        Property mockProperty = new Property(
+                1L, "Casa1",
+                new District(1L,"Japiim 2", BigDecimal.valueOf(1200.2)),
+                List.of(
+                        new Room("Quarto", 25.0, 25.0),
+                        new Room("Banheiro", 15.0, 15.0)));
+
+        Mockito.when(propertyRepository.findById(ArgumentMatchers.any(Long.class))).thenReturn(mockProperty);
+
+        List<RoomSquareMetersDTO> response = this.propertyService.getRoomsSquareMeters(1L);
+
+        Assertions.assertThat(response).hasSize(2);
+        Assertions.assertThat(response.get(0)).usingRecursiveComparison().isEqualTo(
+                new RoomSquareMetersDTO("Quarto", 625.0));
+        Assertions.assertThat(response.get(1)).usingRecursiveComparison().isEqualTo(
+                new RoomSquareMetersDTO("Banheiro", 225.0));
+    }
 }
