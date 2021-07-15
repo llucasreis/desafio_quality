@@ -1,7 +1,10 @@
 package com.bootcamp.desafio.seuimovelapi.modules.properties.services;
 
 import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.District;
+import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Property;
+import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Room;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.PropertyFormDTO;
+import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalSquareMetersDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.DistrictRepository;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.PropertyRepository;
 import com.bootcamp.desafio.seuimovelapi.shared.exceptions.NotFoundException;
@@ -26,6 +29,24 @@ public class PropertyServiceImpl implements PropertyService {
 
         if (district == null) throw new NotFoundException("Bairro não encontrado");
 
-        boolean success = this.propertyRepository.createProperty(formDTO.convert());
+        boolean success = this.propertyRepository.createProperty(formDTO.convert(district));
+    }
+
+    @Override
+    public Property findById(Long id) {
+        Property property = this.propertyRepository.findById(id);
+
+        if (property == null) throw new NotFoundException("Propriedade não encontrada");
+
+        return property;
+    }
+
+    @Override
+    public TotalSquareMetersDTO getTotalSquareMeters(Long id) {
+        Property property = this.findById(id);
+
+        double totalSquareMeters = property.getRooms().stream().mapToDouble(Room::squareMeters).sum();
+
+        return new TotalSquareMetersDTO(property.getId(), property.getProp_name(), totalSquareMeters);
     }
 }
