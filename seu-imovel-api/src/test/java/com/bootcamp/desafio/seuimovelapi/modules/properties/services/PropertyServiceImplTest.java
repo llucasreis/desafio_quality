@@ -6,10 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.District;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Property;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Room;
-import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.PropertyFormDTO;
-import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.RoomFormDTO;
-import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalSquareMetersDTO;
-import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalValueDTO;
+import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.*;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.DistrictRepository;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.PropertyRepository;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.PropertyRepositoryImpl;
@@ -134,9 +131,9 @@ public class PropertyServiceImplTest {
 
         Mockito.when(propertyRepository.findById(ArgumentMatchers.any(Long.class))).thenReturn(mockProperty);
 
-        Room response = this.propertyService.getBiggestRoom(1L);
+        RoomSquareMeterDTO response = this.propertyService.getBiggestRoom(1L);
 
         Assertions.assertThat(response.getRoom_name()).isEqualTo("Quarto");
-        Assertions.assertThat(response.squareMeters()).isEqualTo(625.0);
+        Assertions.assertThat(response.getSquare_meters()).isEqualTo(625.0);
     }
 }

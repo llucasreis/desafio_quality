@@ -2,20 +2,27 @@ package com.bootcamp.desafio.seuimovelapi.modules.properties.dtos;
 
 import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Room;
 
-public class BiggestRoomDTO {
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class RoomSquareMeterDTO {
     private String room_name;
     private double square_meters;
 
-    public BiggestRoomDTO() {
+    public RoomSquareMeterDTO() {
     }
 
-    public BiggestRoomDTO(String room_name, double square_meters) {
+    public RoomSquareMeterDTO(String room_name, double square_meters) {
         this.room_name = room_name;
         this.square_meters = square_meters;
     }
 
-    public static BiggestRoomDTO convert(Room room) {
-        return new BiggestRoomDTO(room.getRoom_name(), room.squareMeters());
+    public static RoomSquareMeterDTO convert(Room room) {
+        return new RoomSquareMeterDTO(room.getRoom_name(), room.squareMeters());
+    }
+
+    public static List<RoomSquareMeterDTO> convert(List<Room> rooms) {
+        return rooms.stream().map(RoomSquareMeterDTO::convert).collect(Collectors.toList());
     }
 
     public String getRoom_name() {
