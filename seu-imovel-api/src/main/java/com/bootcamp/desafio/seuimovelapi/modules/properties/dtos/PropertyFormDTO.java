@@ -19,10 +19,10 @@ public class PropertyFormDTO {
     @Size(max = 45, message = "O comprimento o bairro não pode exceder 45 caracteres.")
     private String prop_district;
 
-    @NotNull(message = "O valor do metro quadrado no bairro não pode estar vazio.")
-    @DecimalMin(value = "0.0", inclusive = false, message = "O valor do metro quadrado no bairro precisa ser maior que zero.")
-    @Digits(integer = 13, fraction = 2, message = "O valor do metro quadrado precisa ser até 13 dígitos.")
-    private BigDecimal value_district_m2;
+//    @NotNull(message = "O valor do metro quadrado no bairro não pode estar vazio.")
+//    @DecimalMin(value = "0.0", inclusive = false, message = "O valor do metro quadrado no bairro precisa ser maior que zero.")
+//    @Digits(integer = 13, fraction = 2, message = "O valor do metro quadrado precisa ser até 13 dígitos.")
+//    private BigDecimal value_district_m2;
 
     @Valid
     @Size(min = 1, message = "Uma propriedade precisa ter pelo menos um cômodo.")
@@ -34,12 +34,11 @@ public class PropertyFormDTO {
     public PropertyFormDTO(String prop_name, String prop_district, BigDecimal value_district_m2, List<RoomFormDTO> rooms) {
         this.prop_name = prop_name;
         this.prop_district = prop_district;
-        this.value_district_m2 = value_district_m2;
+//        this.value_district_m2 = value_district_m2;
         this.rooms = rooms;
     }
 
-    public Property convert() {
-        District district = new District(this.prop_district, this.value_district_m2);
+    public Property convert(District district) {
         return new Property(this.prop_name, district, RoomFormDTO.convert(this.rooms));
     }
 
@@ -59,13 +58,13 @@ public class PropertyFormDTO {
         this.prop_district = prop_district;
     }
 
-    public BigDecimal getValue_district_m2() {
-        return value_district_m2;
-    }
-
-    public void setValue_district_m2(BigDecimal value_district_m2) {
-        this.value_district_m2 = value_district_m2;
-    }
+//    public BigDecimal getValue_district_m2() {
+//        return value_district_m2;
+//    }
+//
+//    public void setValue_district_m2(BigDecimal value_district_m2) {
+//        this.value_district_m2 = value_district_m2;
+//    }
 
     public List<RoomFormDTO> getRooms() {
         return rooms;
