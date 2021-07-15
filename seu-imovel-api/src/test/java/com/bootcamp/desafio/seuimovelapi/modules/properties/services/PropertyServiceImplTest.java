@@ -96,7 +96,7 @@ public class PropertyServiceImplTest {
 
         TotalSquareMetersDTO response = this.propertyService.getTotalSquareMeters(1L);
 
-        Assertions.assertThat(response.getTotalSquareMeters()).isEqualTo(expected);
+        Assertions.assertThat(response.getTotal_square_meters()).isEqualTo(expected);
     }
 
     @Test
@@ -112,7 +112,7 @@ public class PropertyServiceImplTest {
 
         TotalValueDTO response = this.propertyService.getTotalValue(1L);
 
-        Assertions.assertThat(response.getTotalValue()).isEqualTo(expected);
+        Assertions.assertThat(response.getTotal_value()).isEqualTo(expected);
     }
 
     @Test

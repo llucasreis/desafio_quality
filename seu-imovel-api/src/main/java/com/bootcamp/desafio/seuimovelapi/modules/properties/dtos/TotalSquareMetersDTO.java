@@ -4,15 +4,15 @@ public class TotalSquareMetersDTO {
 
     private Long id;
     private String prop_name;
-    private double totalSquareMeters;
+    private double total_square_meters;
 
     public TotalSquareMetersDTO() {
     }
 
-    public TotalSquareMetersDTO(Long id, String prop_name, double totalSquareMeters) {
+    public TotalSquareMetersDTO(Long id, String prop_name, double total_square_meters) {
         this.id = id;
         this.prop_name = prop_name;
-        this.totalSquareMeters = totalSquareMeters;
+        this.total_square_meters = total_square_meters;
     }
 
     public Long getId() {
@@ -31,11 +31,11 @@ public class TotalSquareMetersDTO {
         this.prop_name = prop_name;
     }
 
-    public double getTotalSquareMeters() {
-        return totalSquareMeters;
+    public double getTotal_square_meters() {
+        return total_square_meters;
     }
 
-    public void setTotalSquareMeters(double totalSquareMeters) {
-        this.totalSquareMeters = totalSquareMeters;
+    public void setTotal_square_meters(double total_square_meters) {
+        this.total_square_meters = total_square_meters;
     }
 }

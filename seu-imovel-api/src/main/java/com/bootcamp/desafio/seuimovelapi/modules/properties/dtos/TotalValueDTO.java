@@ -6,15 +6,15 @@ public class TotalValueDTO {
 
     private Long id;
     private String prop_name;
-    private BigDecimal totalValue;
+    private BigDecimal total_value;
 
     public TotalValueDTO() {
     }
 
-    public TotalValueDTO(Long id, String prop_name, BigDecimal totalValue) {
+    public TotalValueDTO(Long id, String prop_name, BigDecimal total_value) {
         this.id = id;
         this.prop_name = prop_name;
-        this.totalValue = totalValue;
+        this.total_value = total_value;
     }
 
     public Long getId() {
@@ -33,11 +33,11 @@ public class TotalValueDTO {
         this.prop_name = prop_name;
     }
 
-    public BigDecimal getTotalValue() {
-        return totalValue;
+    public BigDecimal getTotal_value() {
+        return total_value;
     }
 
-    public void setTotalValue(BigDecimal totalValue) {
-        this.totalValue = totalValue;
+    public void setTotal_value(BigDecimal total_value) {
+        this.total_value = total_value;
     }
 }
