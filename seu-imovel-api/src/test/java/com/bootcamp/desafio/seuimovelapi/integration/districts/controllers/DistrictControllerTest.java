@@ -1,4 +1,4 @@
-package com.bootcamp.desafio.seuimovelapi.integration.districts;
+package com.bootcamp.desafio.seuimovelapi.integration.districts.controllers;
 
 import static org.mockito.ArgumentMatchers.any;
 

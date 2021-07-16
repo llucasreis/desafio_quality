@@ -1,4 +1,4 @@
-package com.bootcamp.desafio.seuimovelapi.integration.properties;
+package com.bootcamp.desafio.seuimovelapi.integration.properties.controllers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
