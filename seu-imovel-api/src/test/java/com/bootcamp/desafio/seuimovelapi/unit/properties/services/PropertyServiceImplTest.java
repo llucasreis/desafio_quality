@@ -1,4 +1,4 @@
-package com.bootcamp.desafio.seuimovelapi.modules.properties.services;
+package com.bootcamp.desafio.seuimovelapi.unit.properties.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,6 +12,8 @@ import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.*;
 import com.bootcamp.desafio.seuimovelapi.modules.districts.repositories.DistrictRepositoryImpl;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.PropertyRepository;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.repositories.PropertyRepositoryImpl;
+import com.bootcamp.desafio.seuimovelapi.modules.properties.services.PropertyService;
+import com.bootcamp.desafio.seuimovelapi.modules.properties.services.PropertyServiceImpl;
 import com.bootcamp.desafio.seuimovelapi.shared.exceptions.NotFoundException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
