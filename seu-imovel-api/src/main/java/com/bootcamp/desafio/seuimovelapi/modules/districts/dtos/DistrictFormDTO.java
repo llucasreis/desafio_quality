@@ -2,10 +2,7 @@ package com.bootcamp.desafio.seuimovelapi.modules.districts.dtos;
 
 import com.bootcamp.desafio.seuimovelapi.modules.districts.domain.District;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 public class DistrictFormDTO {
@@ -15,6 +12,7 @@ public class DistrictFormDTO {
     private String prop_district;
 
     @NotNull(message = "O valor do metro quadrado não pode estar vazio.")
+    @DecimalMin(value = "0.0", inclusive = false, message = "O valor do metro quadrado no bairro precisa ser maior que zero.")
     @Digits(integer = 13, fraction = 2, message = "O valor do metro quadrado não pode exceder 13 dígitos.")
     private BigDecimal value_district_m2;
 
