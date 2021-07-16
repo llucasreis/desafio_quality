@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "c430604f-27d4-4059-ac15-f8b0a0bdcf5d",
+		"name": "Seu Imóvel API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Property",
+			"item": [
+				{
+					"name": "Create Property",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prop_name\": \"Casa 1\",\n    \"prop_district_id\": 1,\n    \"rooms\": [\n        {\n            \"room_name\": \"Quarto\",\n            \"room_width\": 25.0,\n            \"room_length\": 25.0\n        },\n        {\n            \"room_name\": \"Banheiro\",\n            \"room_width\": 15.0,\n            \"room_length\": 15.0\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/property",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"property"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Total Value",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/property/1/totalValue",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"property",
+								"1",
+								"totalValue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Total Square Meters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/property/1/totalSquareMeters",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"property",
+								"1",
+								"totalSquareMeters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Biggest Room",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/property/1/biggestRoom",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"property",
+								"1",
+								"biggestRoom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Rooms Square Meters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/property/1/rooms",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"property",
+								"1",
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "District",
+			"item": [
+				{
+					"name": "Create District",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prop_district\": \"Vila Olímpica\",\n    \"value_district_m2\": 12345.12\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/district",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"district"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/district",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"district"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
