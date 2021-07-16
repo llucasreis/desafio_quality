@@ -10,6 +10,11 @@ public class District {
     public District() {
     }
 
+    public District(String prop_district, BigDecimal value_district_m2) {
+        this.prop_district = prop_district;
+        this.value_district_m2 = value_district_m2;
+    }
+
     public District(Long id, String prop_district, BigDecimal value_district_m2) {
         this.id = id;
         this.prop_district = prop_district;

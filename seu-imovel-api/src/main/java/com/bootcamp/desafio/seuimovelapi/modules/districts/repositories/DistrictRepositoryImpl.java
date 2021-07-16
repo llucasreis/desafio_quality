@@ -1,6 +1,7 @@
 package com.bootcamp.desafio.seuimovelapi.modules.districts.repositories;
 
 import com.bootcamp.desafio.seuimovelapi.modules.districts.domain.District;
+import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Property;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -22,8 +23,33 @@ public class DistrictRepositoryImpl implements DistrictRepository {
         ));
     }
 
+    private Long getNextId() {
+        if (this.districtList.size() == 0) return 1L;
+
+        District lastDistrict = this.districtList.get(this.districtList.size() - 1);
+
+        return lastDistrict.getId()+1;
+    }
+
+    @Override
+    public boolean createDistrict(District district) {
+        district.setId(this.getNextId());
+
+        return this.districtList.add(district);
+    }
+
+    @Override
+    public District findByName(String name) {
+        return this.districtList.stream().filter(d -> d.getProp_district().equals(name)).findFirst().orElse(null);
+    }
+
     @Override
     public District findById(Long id) {
         return this.districtList.stream().filter(d -> d.getId().equals(id)).findFirst().orElse(null);
+    }
+
+    @Override
+    public List<District> findAll() {
+        return this.districtList;
     }
 }
