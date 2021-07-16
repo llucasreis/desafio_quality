@@ -8,12 +8,13 @@ import java.math.BigDecimal;
 public class DistrictFormDTO {
 
     @NotBlank(message = "O bairro não pode estar vazio.")
+    @Pattern(regexp = "^[A-Z][A-Za-z0-9_ ]*$", message = "O nome do bairro deve começar com uma letra maiúscula.")
     @Size(max = 45, message = "O comprimento do bairro não pode exceder 45 caracteres.")
     private String prop_district;
 
     @NotNull(message = "O valor do metro quadrado não pode estar vazio.")
     @DecimalMin(value = "0.0", inclusive = false, message = "O valor do metro quadrado no bairro precisa ser maior que zero.")
-    @Digits(integer = 13, fraction = 2, message = "O valor do metro quadrado não pode exceder 13 dígitos.")
+    @Digits(integer = 13, fraction = 2, message = "O valor do metro quadrado não pode exceder 13 dígitos ou 2 números fracionários.")
     private BigDecimal value_district_m2;
 
     public DistrictFormDTO() {
