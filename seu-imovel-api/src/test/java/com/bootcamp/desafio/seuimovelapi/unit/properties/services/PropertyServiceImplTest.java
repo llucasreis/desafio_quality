@@ -41,16 +41,20 @@ public class PropertyServiceImplTest {
     @Test
     public void shouldBeAbleToCreateAProperty() {
         District mockDistrict = new District(1L, "Japiim 2", BigDecimal.valueOf(2933.5));
-
         Mockito.when(districtService.findById(ArgumentMatchers.any(Long.class))).thenReturn(mockDistrict);
-        Mockito.when(propertyRepository.createProperty(ArgumentMatchers.any(Property.class))).thenReturn(true);
+
+        Property mockProperty = new Property(1L, "Casa1", mockDistrict, List.of(
+                new Room("Quarto", 25.0, 25.0)
+        ));
+        Mockito.when(propertyRepository.createProperty(ArgumentMatchers.any(Property.class))).thenReturn(mockProperty);
 
         PropertyFormDTO formDTO = new PropertyFormDTO("Casa1", 1L, List.of(
                 new RoomFormDTO("Quarto", 25.0, 25.0)
         ));
-        boolean response = this.propertyService.createProperty(formDTO);
 
-        Assertions.assertThat(response).isEqualTo(true);
+        Property response = this.propertyService.createProperty(formDTO);
+
+        Assertions.assertThat(response).usingRecursiveComparison().isEqualTo(mockProperty);
     }
 
     @Test

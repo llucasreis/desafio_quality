@@ -8,6 +8,7 @@ import com.bootcamp.desafio.seuimovelapi.modules.districts.repositories.District
 import com.bootcamp.desafio.seuimovelapi.modules.districts.repositories.DistrictRepositoryImpl;
 import com.bootcamp.desafio.seuimovelapi.modules.districts.services.DistrictService;
 import com.bootcamp.desafio.seuimovelapi.modules.districts.services.DistrictServiceImpl;
+import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Property;
 import com.bootcamp.desafio.seuimovelapi.shared.exceptions.ConflictException;
 import com.bootcamp.desafio.seuimovelapi.shared.exceptions.NotFoundException;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,13 +34,15 @@ public class DistrictServiceImplTest {
     @Test
     public void shouldBeAbleToCreateADistrict() {
         Mockito.when(districtRepository.findByName(ArgumentMatchers.any(String.class))).thenReturn(null);
-        Mockito.when(districtRepository.createDistrict(ArgumentMatchers.any(District.class))).thenReturn(true);
+
+        District mockDistrict = new District(1L, "Japiim", BigDecimal.valueOf(2910.7));
+        Mockito.when(districtRepository.createDistrict(ArgumentMatchers.any(District.class))).thenReturn(mockDistrict);
 
         DistrictFormDTO formDTO = new DistrictFormDTO("Japiim", BigDecimal.valueOf(2910.7));
 
-        boolean response = this.districtService.createDistrict(formDTO);
+        District response = this.districtService.createDistrict(formDTO);
 
-        Assertions.assertThat(response).isEqualTo(true);
+        Assertions.assertThat(response).usingRecursiveComparison().isEqualTo(mockDistrict);
     }
 
     @Test
