@@ -24,7 +24,7 @@ public class SwaggerConfiguration {
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("SOCIAL MELI (DESAFIO SPRING) - API")
+        return new ApiInfoBuilder().title("SEU IMOVEL API (DESAFIO QUALITY) - API")
                 .description("Documentação da API de acesso aos endpoints com Swagger").version(version).build();
     }
 }
