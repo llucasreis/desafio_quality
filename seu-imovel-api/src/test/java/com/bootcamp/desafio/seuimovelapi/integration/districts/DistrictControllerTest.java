@@ -9,7 +9,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.bootcamp.desafio.seuimovelapi.modules.districts.domain.District;
 import com.bootcamp.desafio.seuimovelapi.modules.districts.dtos.DistrictFormDTO;
+import com.bootcamp.desafio.seuimovelapi.shared.errors.ValidationError;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,14 +49,17 @@ public class DistrictControllerTest {
 
     @Test
     public void shouldNotCreateADistrictWithInvalidParams() throws Exception {
-        DistrictFormDTO formDTO = new DistrictFormDTO("", BigDecimal.valueOf(12345.12));
+        DistrictFormDTO formDTO = new DistrictFormDTO("", BigDecimal.valueOf(-1));
 
         String payload = mapper.writeValueAsString(formDTO);
 
         mvc.perform(post("/district")
                 .contentType("application/json")
                 .content(payload))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error", Matchers.hasSize(2)))
+                .andExpect(jsonPath("$.error[*].field", Matchers.containsInAnyOrder(
+                        "prop_district", "value_district_m2")));
     }
 
     @Test
