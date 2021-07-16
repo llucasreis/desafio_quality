@@ -30,7 +30,7 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public boolean createProperty(PropertyFormDTO formDTO) {
+    public Property createProperty(PropertyFormDTO formDTO) {
         District district = this.districtService.findById(formDTO.getProp_district_id());
 
         return this.propertyRepository.createProperty(formDTO.convert(district));

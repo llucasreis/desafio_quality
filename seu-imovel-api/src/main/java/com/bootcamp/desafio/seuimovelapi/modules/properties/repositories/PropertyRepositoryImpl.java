@@ -24,10 +24,12 @@ public class PropertyRepositoryImpl implements PropertyRepository {
     }
 
     @Override
-    public boolean createProperty(Property property) {
+    public Property createProperty(Property property) {
         property.setId(this.getNextId());
 
-        return this.propertyList.add(property);
+        this.propertyList.add(property);
+
+        return property;
     }
 
     @Override

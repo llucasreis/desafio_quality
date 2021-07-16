@@ -1,5 +1,6 @@
 package com.bootcamp.desafio.seuimovelapi.modules.properties.controllers;
 
+import com.bootcamp.desafio.seuimovelapi.modules.properties.domain.Property;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.RoomSquareMetersDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.PropertyFormDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalSquareMetersDTO;
@@ -25,10 +26,10 @@ public class PropertyController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createProperty(@Valid @RequestBody PropertyFormDTO formDTO) {
-        this.propertyService.createProperty(formDTO);
+    public ResponseEntity<Property> createProperty(@Valid @RequestBody PropertyFormDTO formDTO) {
+        Property newProperty = this.propertyService.createProperty(formDTO);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(newProperty, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}/totalSquareMeters")

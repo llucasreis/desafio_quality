@@ -9,7 +9,7 @@ import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalValueDTO;
 import java.util.List;
 
 public interface PropertyService {
-    boolean createProperty(PropertyFormDTO formDTO);
+    Property createProperty(PropertyFormDTO formDTO);
     Property findById(Long id);
     TotalSquareMetersDTO getTotalSquareMeters(Long id);
     TotalValueDTO getTotalValue(Long id);
