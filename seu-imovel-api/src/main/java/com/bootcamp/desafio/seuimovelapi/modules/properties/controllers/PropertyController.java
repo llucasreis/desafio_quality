@@ -6,6 +6,7 @@ import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.PropertyFormDTO
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalSquareMetersDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.dtos.TotalValueDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.properties.services.PropertyService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ public class PropertyController {
     }
 
     @PostMapping
+    @ApiOperation("Criar uma propriedade")
     public ResponseEntity<Property> createProperty(@Valid @RequestBody PropertyFormDTO formDTO) {
         Property newProperty = this.propertyService.createProperty(formDTO);
 
@@ -33,6 +35,7 @@ public class PropertyController {
     }
 
     @GetMapping("/{id}/totalSquareMeters")
+    @ApiOperation("Retornar o total de metros quadrados (US-0001)")
     public ResponseEntity<TotalSquareMetersDTO> getTotalSquareMeters(@PathVariable Long id) {
         TotalSquareMetersDTO totalSquareMetersDTO = this.propertyService.getTotalSquareMeters(id);
 
@@ -40,6 +43,7 @@ public class PropertyController {
     }
 
     @GetMapping("/{id}/totalValue")
+    @ApiOperation("Retornar o valor total (US-0002)")
     public ResponseEntity<TotalValueDTO> getTotalValue(@PathVariable Long id) {
         TotalValueDTO totalValueDTO = this.propertyService.getTotalValue(id);
 
@@ -47,6 +51,7 @@ public class PropertyController {
     }
 
     @GetMapping("/{id}/biggestRoom")
+    @ApiOperation("Retornar o maior cômodo (US-0003)")
     public ResponseEntity<RoomSquareMetersDTO> getBiggestRoom(@PathVariable Long id) {
         RoomSquareMetersDTO roomSquareMetersDTO = this.propertyService.getBiggestRoom(id);
 
@@ -54,6 +59,7 @@ public class PropertyController {
     }
 
     @GetMapping("/{id}/rooms")
+    @ApiOperation("Retornar a quantidade de metros quadrados de cada cômodo (US-0004)")
     public ResponseEntity<List<RoomSquareMetersDTO>> getRoomsSquareMeters(@PathVariable Long id) {
         List<RoomSquareMetersDTO> roomSquareMetersDTOS = this.propertyService.getRoomsSquareMeters(id);
 
