@@ -21,7 +21,7 @@ public class DistrictServiceImpl implements DistrictService {
     }
 
     @Override
-    public boolean createDistrict(DistrictFormDTO formDTO) {
+    public District createDistrict(DistrictFormDTO formDTO) {
         District districtAlreadyExist = this.districtRepository.findByName(formDTO.getProp_district());
 
         if (districtAlreadyExist != null) throw new ConflictException("Bairro já existe");

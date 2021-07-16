@@ -32,10 +32,12 @@ public class DistrictRepositoryImpl implements DistrictRepository {
     }
 
     @Override
-    public boolean createDistrict(District district) {
+    public District createDistrict(District district) {
         district.setId(this.getNextId());
 
-        return this.districtList.add(district);
+        this.districtList.add(district);
+
+        return district;
     }
 
     @Override

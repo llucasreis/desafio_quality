@@ -4,6 +4,7 @@ import com.bootcamp.desafio.seuimovelapi.modules.districts.domain.District;
 import com.bootcamp.desafio.seuimovelapi.modules.districts.dtos.DistrictFormDTO;
 import com.bootcamp.desafio.seuimovelapi.modules.districts.services.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,10 +23,10 @@ public class DistrictController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createDistrict(@Valid @RequestBody DistrictFormDTO formDTO) {
-        this.districtService.createDistrict(formDTO);
+    public ResponseEntity<District> createDistrict(@Valid @RequestBody DistrictFormDTO formDTO) {
+        District newDistrict = this.districtService.createDistrict(formDTO);
 
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>(newDistrict, HttpStatus.CREATED);
     }
 
     @GetMapping
