@@ -23,6 +23,8 @@ http://localhost:8080/swagger-ui.html
 
 A especificação dos testes da API pode ser encontrado neste [arquivo](.github/requirements.pdf).
 
+Foi criado um [arquivo](.github/rotas.md) exemplificando o uso das rotas na aplicação.
+
 Este repositório também inclui um [arquivo .json](.github/Seu%20Imóvel%20API.postman_collection.json) do Postman com as rotas da aplicação. No Swagger também é possível testar as rotas da aplicação.
 
 ---
