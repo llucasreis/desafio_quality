@@ -27,9 +27,13 @@ Status: 201
 
 ### Retornar todos os bairros
 
-Exemplo de resposta (200):
+Exemplo de requisição:
 ```javascript
 GET /district
+```
+
+Exemplo de resposta (200):
+```javascript
 [
   {
     "id": 1,
@@ -156,7 +160,7 @@ Exemplo de resposta:
 
 Exemplo de requisição:
 ```javascript
-/property/1/rooms
+GET /property/1/rooms
 ```
 
 Exemplo de resposta:
