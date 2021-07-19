@@ -32,7 +32,7 @@ Exemplo de requisição:
 GET /district
 ```
 
-Exemplo de resposta (200):
+Exemplo de resposta:
 ```javascript
 [
   {
@@ -111,11 +111,12 @@ Status: 201
 
 ### Valor total de metros quadrados
 
-Exemplo de requisição
+Exemplo de requisição:
 ```javascript
 GET /property/1/totalSquareMeters
 ```
 
+Exemplo de resposta:
 ```javascript
 {
   "id": 1,
